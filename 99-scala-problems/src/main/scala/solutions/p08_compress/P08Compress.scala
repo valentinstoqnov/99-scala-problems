@@ -6,7 +6,7 @@ object P08Compress {
 
     def compressRecursive(xs: List[Symbol], res: List[Symbol] = Nil): List[Symbol] = xs match {
       case Nil => res
-      case x :: tail => compressRecursive(tail, if (res.nonEmpty && x == res.last) res else res ++ List(x))
+      case x :: tail => compressRecursive(tail.dropWhile(x ==), res ++ List(x))
     }
 
     compressRecursive(symbols)
