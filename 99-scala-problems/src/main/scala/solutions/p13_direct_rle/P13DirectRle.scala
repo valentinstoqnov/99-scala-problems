@@ -8,7 +8,7 @@ object P13DirectRle {
       case Nil => res
       case x :: tail => encodeRecursive(tail.dropWhile(x ==), res ++ List((tail.takeWhile(x ==).length + 1, x)))
     }
-    
+
     encodeRecursive(list)
 
   }
