@@ -1,0 +1,10 @@
+(define (pack l)
+  (define (pack-h xs res)
+    (cond ((null? xs) res)
+          ((eqv? (car xs) (caar res)) (pack-h (cdr xs) (cons (cons (car xs) (car res)) (cdr res))))
+          (else (pack-h (cdr xs) (cons (list (car xs)) res)))))
+  (if (null? l) '()
+      (reverse (pack-h (cdr l) (list (list (car l)))))))
+
+(define (modified-rle xs)
+  (map (lambda(x) (if (= (length x) 1) (car x) (cons (length x) (car x)))) (pack xs)))
